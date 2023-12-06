@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "inquirer": "^8.2.4",
+    "jbassard97nodecolors": "^1.0.0",
+    "mysql2": "^3.6.5"
+  },
+  "name": "employee_tracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
