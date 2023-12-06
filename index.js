@@ -10,5 +10,7 @@ const db = mysql.createConnection(
     password: "",
     database: "employee_db",
   },
-  console.log(`Connected to the movie_db database.`)
+  console.log(`Connected to the ${colors.MagentaText("employee_db")} database.`)
 );
+
+

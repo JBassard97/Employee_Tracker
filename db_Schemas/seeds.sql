@@ -1,21 +1,3 @@
--- INSERT INTO Department (name) 
---     VALUES ('Upper Management'),
---     ('Middle Management'),
---     ('Front Line')
-
--- INSERT INTO Roles (title, salary)
---     VALUES ('CEO', 650000),
---     -- ('President', 400000.00, 1),
---     -- ('Area Manager', 200000.00, 1),
---     -- ('District Manager' 150000.00, 1),
---     -- ('Owner', 100000.00, 1),
---     ('General Manager', 60000),
---     -- ('Assistant Manager', 50000.50, 2),
---     -- ('Shift Leader', 40000.50, 2),
---     -- ('Cashier', 25000.00, 3),
---     -- ('Receptionist', 20000.00, 3),
---     ('Delivery Driver', 15000);
-
 -- Sample Departments
 INSERT INTO Department (name) VALUES
     ('Leadership'),
