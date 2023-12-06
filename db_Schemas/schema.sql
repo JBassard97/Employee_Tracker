@@ -32,3 +32,6 @@ CREATE TABLE Employee (
     REFERENCES Employee(id) 
     ON DELETE SET NULL 
 );
+
+-- Automatically poplulating the tables we just created with our seeds
+SOURCE ./db_Schemas/seeds.sql;
