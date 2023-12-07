@@ -1,9 +1,8 @@
 // Function to execute a query and display results as a table
-function runQueryShowTable(sqlQuery) {
-  
-    const mysql = require("mysql2");
-  
-    const dbConfig = {
+function runQueryShowTable(sqlQuery, callback) {
+  const mysql = require("mysql2");
+
+  const dbConfig = {
     host: "localhost",
     user: "root",
     password: "",
@@ -30,6 +29,10 @@ function runQueryShowTable(sqlQuery) {
 
     // Close the connection
     connection.end();
+
+    if (callback && typeof callback === "function") {
+      callback();
+    }
   });
 }
 

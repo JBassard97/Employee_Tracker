@@ -1,23 +1,34 @@
 const {
-  mysql,
   inquirer,
-  colors,
   Ask,
-  runQueryShowTable,
+  runQueryShowTable, // This function performs any SQL command as a string and shows a table with what's returned
+  handleWelcomeChoices,
+  sqlCommands,
 } = require("./Helpers/imports");
 
-let sqlQuery = "SELECT * FROM Roles";
+console.clear(); // Resets console for a fresh start
 
-// Example usage:
-// runQueryShowTable(sqlQuery);
+runQueryShowTable(sqlCommands.showAllTables); // Function to run the first query and show the tables we're working with
 
-// Prompt for user input
-inquirer
-  .prompt(Ask.welcomeCoices)
-  .then((answers) => {
-    // Handle user responses
-    console.log("User responses:", answers.choice);
-  })
-  .catch((error) => {
+function startApplication() {
+  try {
+    // Set a delay using setTimeout before prompting for user input
+    setTimeout(function () {
+      // Storing user's choice in a variable
+      inquirer
+        .prompt(Ask.Choices)
+        .then((answers) => {
+          // Handle user responses
+          handleWelcomeChoices(answers.choice);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }, 500); // Minor delay
+  } catch (error) {
     console.error("Error:", error);
-  });
+  }
+}
+
+
+startApplication();
