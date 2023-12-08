@@ -16,6 +16,13 @@ const Ask = {
       ],
     },
   ],
+  AddDepartment: [
+    {
+      type: "input",
+      name: "choice",
+      message: "What is the name of this new Department?",
+    },
+  ],
 };
 
 module.exports = Ask;

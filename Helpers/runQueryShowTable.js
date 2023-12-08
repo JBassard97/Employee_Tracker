@@ -1,4 +1,5 @@
 // Function to execute a query and display results as a table
+// This is primarily used to VIEW tables
 function runQueryShowTable(sqlQuery, callback) {
   const mysql = require("mysql2");
 

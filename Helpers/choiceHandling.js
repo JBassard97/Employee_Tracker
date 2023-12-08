@@ -3,6 +3,7 @@ const sqlCommands = require("./sqlCommandLib");
 const runQueryShowTable = require("./runQueryShowTable");
 const inquirer = require("inquirer");
 const Ask = require("./promptDirectory"); // Adjust the import path
+const queryWithparams = require("./queryWithparams");
 
 function handleChoices(choice) {
   switch (choice) {
@@ -58,6 +59,21 @@ function handleChoices(choice) {
     case "Add Role":
       break;
     case "Add Department":
+      console.clear();
+      runQueryShowTable(sqlCommands.viewAllDepartments, () => {
+        // This callback is executed after the query is completed
+        inquirer
+          .prompt(Ask.AddDepartment)
+          .then((answers) => {
+            let paramsArray = [];
+            paramsArray.push(answers.choice);
+            // Handle the user's answers
+            queryWithparams(sqlCommands.addDepartment, paramsArray);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
       break;
     case "Quit":
       break;

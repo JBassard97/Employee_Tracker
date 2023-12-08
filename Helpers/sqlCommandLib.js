@@ -41,6 +41,9 @@ JOIN
   Department ON Roles.department_id = Department.id
 LEFT JOIN
   Employee AS Manager ON Employee.manager_id = Manager.id;`,
+  addDepartment: `
+  INSERT INTO Department (name)
+  VALUES (?)`,
 };
 
 module.exports = sqlCommands;
