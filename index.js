@@ -1,34 +1,32 @@
 const {
-  inquirer,
+  // inquirer,
   Ask,
-  runQueryShowTable, // This function performs any SQL command as a string and shows a table with what's returned
-  handleWelcomeChoices,
-  sqlCommands,
+  handleChoices,
+  // sqlCommands,
 } = require("./Helpers/imports");
+const inquirer = require("inquirer");
+const runQueryShowTable = require("./Helpers/runQueryShowTable");
+const sqlCommands = require("./Helpers/sqlCommandLib");
 
 console.clear(); // Resets console for a fresh start
 
-runQueryShowTable(sqlCommands.showAllTables); // Function to run the first query and show the tables we're working with
-
-function startApplication() {
+async function startApplication() {
   try {
+    // Run the first query and show the tables we're working with
+    await runQueryShowTable(sqlCommands.showAllTables);
+
     // Set a delay using setTimeout before prompting for user input
-    setTimeout(function () {
-      // Storing user's choice in a variable
-      inquirer
-        .prompt(Ask.Choices)
-        .then((answers) => {
-          // Handle user responses
-          handleWelcomeChoices(answers.choice);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    }, 500); // Minor delay
+    await new Promise((resolve) => setTimeout(resolve, 200));
+
+    // Prompt for user input
+    const answers = await inquirer.prompt(Ask.Choices);
+
+    // Handle user responses
+    handleChoices(answers.choice);
   } catch (error) {
     console.error("Error:", error);
   }
 }
 
-
+// Call the async function
 startApplication();

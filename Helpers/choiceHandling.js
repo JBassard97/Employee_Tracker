@@ -1,8 +1,10 @@
-function handleWelcomeChoices(choice) {
-  const { sqlCommands, runQueryShowTable, inquirer } = require("./imports");
-  const Ask = require("./promptDirectory"); // Adjust the import path
-  const askQuestions = require("./AskQuestions");
+// const { sqlCommands, runQueryShowTable, inquirer } = require("./imports");
+const sqlCommands = require("./sqlCommandLib");
+const runQueryShowTable = require("./runQueryShowTable");
+const inquirer = require("inquirer");
+const Ask = require("./promptDirectory"); // Adjust the import path
 
+function handleChoices(choice) {
   switch (choice) {
     case "View All Employees":
       console.clear();
@@ -12,7 +14,7 @@ function handleWelcomeChoices(choice) {
           .prompt(Ask.Choices)
           .then((answers) => {
             // Handle the user's answers
-            handleWelcomeChoices(answers.choice);
+            handleChoices(answers.choice);
           })
           .catch((error) => {
             console.error("Error:", error);
@@ -27,7 +29,7 @@ function handleWelcomeChoices(choice) {
           .prompt(Ask.Choices)
           .then((answers) => {
             // Handle the user's answers
-            handleWelcomeChoices(answers.choice);
+            handleChoices(answers.choice);
           })
           .catch((error) => {
             console.error("Error:", error);
@@ -42,7 +44,7 @@ function handleWelcomeChoices(choice) {
           .prompt(Ask.Choices)
           .then((answers) => {
             // Handle the user's answers
-            handleWelcomeChoices(answers.choice);
+            handleChoices(answers.choice);
           })
           .catch((error) => {
             console.error("Error:", error);
@@ -62,4 +64,4 @@ function handleWelcomeChoices(choice) {
   }
 }
 
-module.exports = handleWelcomeChoices;
+module.exports = handleChoices;
