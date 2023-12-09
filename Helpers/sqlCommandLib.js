@@ -55,6 +55,19 @@ VALUES (
     ?,
     (SELECT id FROM Department WHERE name = ?)
 );`,
+  addEmployee: `
+  INSERT INTO Employee (first_name, last_name, role_id, manager_id)
+VALUES (
+    ?,
+    ?,
+    (SELECT id FROM Roles WHERE title = ?),
+    ?
+);`,
+  updateEmployeeRole: `
+  UPDATE Employee
+SET role_id = (SELECT id FROM Roles WHERE title = ?)
+WHERE last_name = ?;
+`,
 };
 
 module.exports = sqlCommands;

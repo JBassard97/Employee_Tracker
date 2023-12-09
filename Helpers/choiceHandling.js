@@ -53,8 +53,67 @@ function handleChoices(choice) {
       });
       break;
     case "Add Employee":
+      console.clear();
+      runQueryShowTable(sqlCommands.viewAllEmployees, () => {
+        // This callback is executed after the query is completed
+        inquirer
+          .prompt(Ask.AddEmployee)
+          .then((answers) => {
+            let paramsArray = [];
+            paramsArray.push(answers.empFirstName);
+            paramsArray.push(answers.empLastName);
+            paramsArray.push(answers.empRole);
+            paramsArray.push(answers.managersID);
+            // Handle the user's answers
+            queryWithparams(sqlCommands.addEmployee, paramsArray)
+              .then(() => {
+                // This block is executed after queryWithparams is completed
+                console.clear();
+                console.log("Success!");
+                return inquirer.prompt(Ask.Choices);
+              })
+              .then((newAnswers) => {
+                handleChoices(newAnswers.choice);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
       break;
     case "Update Employee Role":
+      console.clear();
+      runQueryShowTable(sqlCommands.viewAllEmployees, () => {
+        // This callback is executed after the query is completed
+        inquirer
+          .prompt(Ask.UpdateEmployeeRole)
+          .then((answers) => {
+            let paramsArray = [];
+            paramsArray.push(answers.roleTitle);
+            paramsArray.push(answers.lastName);
+
+            // Handle the user's answers
+            queryWithparams(sqlCommands.updateEmployeeRole, paramsArray)
+              .then(() => {
+                // This block is executed after queryWithparams is completed
+                console.clear();
+                console.log("Success!");
+                return inquirer.prompt(Ask.Choices);
+              })
+              .then((newAnswers) => {
+                handleChoices(newAnswers.choice);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
       break;
     case "Add Role":
       console.clear();
