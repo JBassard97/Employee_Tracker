@@ -16,13 +16,17 @@ GROUP BY
     Roles.id AS RoleID,
     Roles.title AS RoleTitle,
     Roles.salary AS RoleSalary,
-    COUNT(Employee.id) AS EmployeeCount
+    COUNT(Employee.id) AS EmployeeCount,
+    Department.name AS DepartmentName -- Include the department name
 FROM
     Roles
 LEFT JOIN
     Employee ON Roles.id = Employee.role_id
+LEFT JOIN
+    Department ON Roles.department_id = Department.id
 GROUP BY
-    Roles.id, Roles.title, Roles.salary;`,
+    Roles.id, Roles.title, Roles.salary, Department.name;
+`,
   viewAllEmployees: `
 SELECT
   Employee.id AS EmployeeID,
@@ -44,6 +48,13 @@ LEFT JOIN
   addDepartment: `
   INSERT INTO Department (name)
   VALUES (?)`,
+  addRole: `
+  INSERT INTO Roles (title, salary, department_id) 
+VALUES (
+    ?,
+    ?,
+    (SELECT id FROM Department WHERE name = ?)
+);`,
 };
 
 module.exports = sqlCommands;

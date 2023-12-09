@@ -12,7 +12,6 @@ async function queryWithparams(sqlQuery, paramArray) {
 
   try {
     await connection.promise().execute(sqlQuery, paramArray);
-    console.log("Success!");
   } catch (error) {
     console.error("Error executing query", error);
   } finally {

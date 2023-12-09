@@ -57,6 +57,35 @@ function handleChoices(choice) {
     case "Update Employee Role":
       break;
     case "Add Role":
+      console.clear();
+      runQueryShowTable(sqlCommands.viewAllRoles, () => {
+        // This callback is executed after the query is completed
+        inquirer
+          .prompt(Ask.AddRole)
+          .then((answers) => {
+            let paramsArray = [];
+            paramsArray.push(answers.roleName);
+            paramsArray.push(answers.roleSalary);
+            paramsArray.push(answers.roleDepartment);
+            // Handle the user's answers
+            queryWithparams(sqlCommands.addRole, paramsArray)
+              .then(() => {
+                // This block is executed after queryWithparams is completed
+                console.clear();
+                console.log("Success!");
+                return inquirer.prompt(Ask.Choices);
+              })
+              .then((newAnswers) => {
+                handleChoices(newAnswers.choice);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
       break;
     case "Add Department":
       console.clear();
@@ -68,13 +97,43 @@ function handleChoices(choice) {
             let paramsArray = [];
             paramsArray.push(answers.choice);
             // Handle the user's answers
-            queryWithparams(sqlCommands.addDepartment, paramsArray);
+            queryWithparams(sqlCommands.addDepartment, paramsArray)
+              .then(() => {
+                // This block is executed after queryWithparams is completed
+                console.clear();
+                console.log("Success!");
+                return inquirer.prompt(Ask.Choices);
+              })
+              .then((newAnswers) => {
+                handleChoices(newAnswers.choice);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
           })
           .catch((error) => {
             console.error("Error:", error);
           });
       });
       break;
+
+    // case "Add Department":
+    //   console.clear();
+    //   runQueryShowTable(sqlCommands.viewAllDepartments, () => {
+    //     // This callback is executed after the query is completed
+    //     inquirer
+    //       .prompt(Ask.AddDepartment)
+    //       .then((answers) => {
+    //         let paramsArray = [];
+    //         paramsArray.push(answers.choice);
+    //         // Handle the user's answers
+    //         queryWithparams(sqlCommands.addDepartment, paramsArray);
+    //       })
+    //       .catch((error) => {
+    //         console.error("Error:", error);
+    //       });
+    //   });
+    //   break;
     case "Quit":
       break;
   }

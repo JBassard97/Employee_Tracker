@@ -23,6 +23,23 @@ const Ask = {
       message: "What is the name of this new Department?",
     },
   ],
+  AddRole: [
+    {
+      type: "input",
+      name: "roleName",
+      message: "What is the name of this new Role?",
+    },
+    {
+      type: "input",
+      name: "roleSalary",
+      message: "What is this role's salary?",
+    },
+    {
+      type: "input",
+      name: "roleDepartment",
+      message: "What department does this role belong to?",
+    },
+  ],
 };
 
 module.exports = Ask;
