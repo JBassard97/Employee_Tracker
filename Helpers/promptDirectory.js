@@ -5,14 +5,21 @@ const Ask = {
       name: "choice",
       message: "What would you like to do?",
       choices: [
+        "View All Departments",
         "View All Employees",
         "View All Roles",
-        "View All Departments",
-        "Add Employee",
-        "Update Employee Role",
-        "Add Role",
         "Add Department",
+        "Add Employee",
+        "Add Role",
+        "Update Employee Role",
         "Quit",
+        "View Employees By Manager",
+        "Update Employee Managers",
+        "View Employees By Department",
+        "Delete Department",
+        "Delete Employee",
+        "Delete Role",
+        "View Labor Budget",
       ],
     },
   ],
@@ -66,12 +73,68 @@ const Ask = {
     {
       type: "input",
       name: "lastName",
-      message: "What is last name of the employee you'd like to promote/demote?",
+      message:
+        "What is last name of the employee you'd like to promote/demote?",
     },
     {
       type: "input",
       name: "roleTitle",
       message: "What is the title of their new role?",
+    },
+  ],
+  DeleteEmployee: [
+    {
+      type: "input",
+      name: "empLastName",
+      message: "What is last name of the employee you'd like to delete?",
+    },
+    {
+      type: "input",
+      name: "empID",
+      message: "What is this employee's ID?",
+    },
+  ],
+  DeleteDepartment: [
+    {
+      type: "input",
+      name: "depName",
+      message: "What is the name of the department you'd like to delete?",
+    },
+  ],
+  DeleteRole: [
+    {
+      type: "input",
+      name: "roleName",
+      message: "What is the name of the role you'd like to delete?",
+    },
+  ],
+  UpdateEmployeeManager: [
+    {
+      type: "input",
+      name: "empLastName",
+      message: "What is the last name of the employee we're updating?",
+    },
+    {
+      type: "input",
+      name: "empID",
+      message: "What is this employee's ID?",
+    },
+    {
+      type: "input",
+      name: "newManagerID",
+      message: "What is the ID of this employee's new manager?",
+    },
+  ],
+  ViewEmployeesByManager: [
+    {
+      type: "input",
+      name: "mgrLastName",
+      message: "What is last name of the manager you'd like to view employees for?",
+    },
+    {
+      type: "input",
+      name: "empID",
+      message: "What is this manager's ID?",
     },
   ],
 };

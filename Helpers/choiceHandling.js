@@ -175,18 +175,154 @@ function handleChoices(choice) {
           });
       });
       break;
+    case "Delete Employee":
+      console.clear();
+      runQueryShowTable(sqlCommands.viewAllEmployees, () => {
+        // This callback is executed after the query is completed
+        inquirer
+          .prompt(Ask.DeleteEmployee)
+          .then((answers) => {
+            let paramsArray = [];
+            paramsArray.push(answers.empLastName);
+            paramsArray.push(answers.empID);
 
-    // case "Add Department":
+            // Handle the user's answers
+            queryWithparams(sqlCommands.deleteEmployee, paramsArray)
+              .then(() => {
+                // This block is executed after queryWithparams is completed
+                console.clear();
+                console.log("Success!");
+                return inquirer.prompt(Ask.Choices);
+              })
+              .then((newAnswers) => {
+                handleChoices(newAnswers.choice);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+      break;
+    case "Delete Department":
+      console.clear();
+      runQueryShowTable(sqlCommands.viewAllDepartments, () => {
+        // This callback is executed after the query is completed
+        inquirer
+          .prompt(Ask.DeleteDepartment)
+          .then((answers) => {
+            let paramsArray = [];
+            paramsArray.push(answers.depName);
+
+            // Handle the user's answers
+            queryWithparams(sqlCommands.deleteDepartment, paramsArray)
+              .then(() => {
+                // This block is executed after queryWithparams is completed
+                console.clear();
+                console.log("Success!");
+                return inquirer.prompt(Ask.Choices);
+              })
+              .then((newAnswers) => {
+                handleChoices(newAnswers.choice);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+      break;
+    case "Delete Role":
+      console.clear();
+      runQueryShowTable(sqlCommands.viewAllRoles, () => {
+        // This callback is executed after the query is completed
+        inquirer
+          .prompt(Ask.DeleteRole)
+          .then((answers) => {
+            let paramsArray = [];
+            paramsArray.push(answers.roleName);
+
+            // Handle the user's answers
+            queryWithparams(sqlCommands.deleteRole, paramsArray)
+              .then(() => {
+                // This block is executed after queryWithparams is completed
+                console.clear();
+                console.log("Success!");
+                return inquirer.prompt(Ask.Choices);
+              })
+              .then((newAnswers) => {
+                handleChoices(newAnswers.choice);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+      break;
+    case "Update Employee Managers":
+      console.clear();
+      runQueryShowTable(sqlCommands.viewAllEmployees, () => {
+        // This callback is executed after the query is completed
+        inquirer
+          .prompt(Ask.UpdateEmployeeManager)
+          .then((answers) => {
+            let paramsArray = [];
+            paramsArray.push(answers.newManagerID);
+            paramsArray.push(answers.empLastName);
+            paramsArray.push(answers.empID);
+
+            // Handle the user's answers
+            queryWithparams(sqlCommands.updateEmployeeManager, paramsArray)
+              .then(() => {
+                // This block is executed after queryWithparams is completed
+                console.clear();
+                console.log("Success!");
+
+                return inquirer.prompt(Ask.Choices);
+              })
+              .then((newAnswers) => {
+                handleChoices(newAnswers.choice);
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+      break;
+    // case "View Employees By Manager":
     //   console.clear();
-    //   runQueryShowTable(sqlCommands.viewAllDepartments, () => {
+    //   runQueryShowTable(sqlCommands.viewAllEmployees, () => {
     //     // This callback is executed after the query is completed
     //     inquirer
-    //       .prompt(Ask.AddDepartment)
+    //       .prompt(Ask.ViewEmployeesByManager)
     //       .then((answers) => {
     //         let paramsArray = [];
-    //         paramsArray.push(answers.choice);
+    //         paramsArray.push(answers.empID);
+    //         paramsArray.push(answers.mgrLastName);
+    //         console.clear();
     //         // Handle the user's answers
-    //         queryWithparams(sqlCommands.addDepartment, paramsArray);
+    //         queryWithparams(sqlCommands.addDepartment, paramsArray)
+    //           .then(() => {
+    //             // This block is executed after queryWithparams is completed
+    //             console.log("Success!");
+    //             return inquirer.prompt(Ask.Choices);
+    //           })
+    //           .then((newAnswers) => {
+    //             handleChoices(newAnswers.choice);
+    //           })
+    //           .catch((error) => {
+    //             console.error("Error:", error);
+    //           });
     //       })
     //       .catch((error) => {
     //         console.error("Error:", error);

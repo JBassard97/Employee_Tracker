@@ -68,6 +68,34 @@ VALUES (
 SET role_id = (SELECT id FROM Roles WHERE title = ?)
 WHERE last_name = ?;
 `,
+  // Asking for a last name and ID in case two people with same last names exists
+  deleteEmployee: `
+  DELETE FROM Employee
+  WHERE last_name = ? AND id = ?;`,
+  deleteDepartment: `
+  DELETE FROM Department
+  WHERE name = ?`,
+  deleteRole: `
+  DELETE FROM Roles
+  WHERE title = ?`,
+  updateEmployeeManager: `
+  UPDATE Employee
+SET manager_id = ?
+WHERE last_name = ? AND id = ?;`,
+  viewEmployeesByManager: `
+  SELECT
+    Employee.id AS EmployeeID,
+    Employee.first_name AS EmployeeFirstName,
+    Employee.last_name AS EmployeeLastName,
+    Roles.title AS EmployeeRoleTitle,
+    Employee.manager_id AS EmployeeManagerID
+FROM
+    Employee
+JOIN
+    Roles ON Employee.role_id = Roles.id
+WHERE
+    Employee.manager_id = (SELECT id FROM Employee WHERE last_name = ?)
+    AND Employee.last_name = ?;`,
 };
 
 module.exports = sqlCommands;
