@@ -94,8 +94,34 @@ FROM
 JOIN
     Roles ON Employee.role_id = Roles.id
 WHERE
-    Employee.manager_id = (SELECT id FROM Employee WHERE last_name = ?)
-    AND Employee.last_name = ?;`,
+    Employee.manager_id = ?`,
+  viewEmployeesByDepartment: `
+  SELECT
+    Employee.id AS EmployeeID,
+    Employee.first_name AS FirstName,
+    Employee.last_name AS LastName,
+    Roles.title AS RoleTitle,
+    Department.name AS DepartmentName
+FROM
+    Employee
+JOIN
+    Roles ON Employee.role_id = Roles.id
+JOIN
+    Department ON Roles.department_id = Department.id
+WHERE
+    Department.name = ?;`,
+  viewLaborBudget: `
+  SELECT 
+    Department.id AS department_id,
+    Department.name AS department_name,
+    COUNT(Roles.id) AS num_roles,
+    SUM(Roles.salary) AS total_salary_budget
+FROM 
+    Department
+LEFT JOIN 
+    Roles ON Department.id = Roles.department_id
+GROUP BY 
+    Department.id, Department.name;`,
 };
 
 module.exports = sqlCommands;

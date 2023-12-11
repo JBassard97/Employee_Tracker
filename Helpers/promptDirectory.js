@@ -129,12 +129,20 @@ const Ask = {
     {
       type: "input",
       name: "mgrLastName",
-      message: "What is last name of the manager you'd like to view employees for?",
+      message:
+        "What is last name of the manager you'd like to view employees for?",
     },
     {
       type: "input",
       name: "empID",
       message: "What is this manager's ID?",
+    },
+  ],
+  ViewEmployeesByDepartment: [
+    {
+      type: "input",
+      name: "depName",
+      message: "What is the name of the department you'd like to view employees for?",
     },
   ],
 };

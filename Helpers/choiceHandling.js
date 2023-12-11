@@ -4,6 +4,7 @@ const runQueryShowTable = require("./runQueryShowTable");
 const inquirer = require("inquirer");
 const Ask = require("./promptDirectory"); // Adjust the import path
 const queryWithparams = require("./queryWithparams");
+const fillQueryWithParams = require("./fillQueryWithParams");
 
 function handleChoices(choice) {
   switch (choice) {
@@ -299,36 +300,65 @@ function handleChoices(choice) {
           });
       });
       break;
-    // case "View Employees By Manager":
-    //   console.clear();
-    //   runQueryShowTable(sqlCommands.viewAllEmployees, () => {
-    //     // This callback is executed after the query is completed
-    //     inquirer
-    //       .prompt(Ask.ViewEmployeesByManager)
-    //       .then((answers) => {
-    //         let paramsArray = [];
-    //         paramsArray.push(answers.empID);
-    //         paramsArray.push(answers.mgrLastName);
-    //         console.clear();
-    //         // Handle the user's answers
-    //         queryWithparams(sqlCommands.addDepartment, paramsArray)
-    //           .then(() => {
-    //             // This block is executed after queryWithparams is completed
-    //             console.log("Success!");
-    //             return inquirer.prompt(Ask.Choices);
-    //           })
-    //           .then((newAnswers) => {
-    //             handleChoices(newAnswers.choice);
-    //           })
-    //           .catch((error) => {
-    //             console.error("Error:", error);
-    //           });
-    //       })
-    //       .catch((error) => {
-    //         console.error("Error:", error);
-    //       });
-    //   });
-    //   break;
+    case "View Employees By Manager":
+      console.clear();
+      runQueryShowTable(sqlCommands.viewAllEmployees, () => {
+        // This callback is executed after the query is completed
+        inquirer.prompt(Ask.ViewEmployeesByManager).then((answers) => {
+          let paramsArray = [];
+          paramsArray.push(answers.empID);
+          console.clear();
+          runQueryShowTable(
+            fillQueryWithParams(
+              sqlCommands.viewEmployeesByManager,
+              paramsArray
+            ),
+            () => {
+              inquirer.prompt(Ask.Choices).then((newAnswers) => {
+                handleChoices(newAnswers.choice);
+              });
+            }
+          );
+        });
+      });
+      break;
+    case "View Employees By Department":
+      console.clear();
+      runQueryShowTable(sqlCommands.viewAllDepartments, () => {
+        // This callback is executed after the query is completed
+        inquirer.prompt(Ask.ViewEmployeesByDepartment).then((answers) => {
+          let paramsArray = [];
+          paramsArray.push(answers.depName);
+          console.clear();
+          runQueryShowTable(
+            fillQueryWithParams(
+              sqlCommands.viewEmployeesByDepartment,
+              paramsArray
+            ),
+            () => {
+              inquirer.prompt(Ask.Choices).then((newAnswers) => {
+                handleChoices(newAnswers.choice);
+              });
+            }
+          );
+        });
+      });
+      break;
+    case "View Labor Budget":
+      console.clear();
+      runQueryShowTable(sqlCommands.viewLaborBudget, () => {
+        // This callback is executed after the query is completed
+        inquirer
+          .prompt(Ask.Choices)
+          .then((answers) => {
+            // Handle the user's answers
+            handleChoices(answers.choice);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+      break;
     case "Quit":
       break;
   }
