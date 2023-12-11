@@ -1,13 +1,7 @@
+// Takes in query string, array of parameters, and just does it.
 async function queryWithparams(sqlQuery, paramArray) {
   const mysql = require("mysql2");
-
-  const dbConfig = {
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "employee_db",
-  };
-
+  const dbConfig = require("./dbConfig");
   const connection = mysql.createConnection(dbConfig);
 
   try {

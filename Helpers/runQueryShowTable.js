@@ -2,14 +2,7 @@
 // This is primarily used to VIEW tables
 function runQueryShowTable(sqlQuery, callback) {
   const mysql = require("mysql2");
-
-  const dbConfig = {
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "employee_db",
-  };
-
+  const dbConfig = require("./dbConfig");
   const connection = mysql.createConnection(dbConfig);
 
   // Perform a SELECT query

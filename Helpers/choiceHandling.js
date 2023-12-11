@@ -166,9 +166,6 @@ function handleChoices(choice) {
               })
               .then((newAnswers) => {
                 handleChoices(newAnswers.choice);
-              })
-              .catch((error) => {
-                console.error("Error:", error);
               });
           })
           .catch((error) => {

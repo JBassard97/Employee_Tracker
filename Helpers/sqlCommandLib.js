@@ -85,9 +85,9 @@ WHERE last_name = ? AND id = ?;`,
   viewEmployeesByManager: `
   SELECT
     Employee.id AS EmployeeID,
-    Employee.first_name AS EmployeeFirstName,
-    Employee.last_name AS EmployeeLastName,
-    Roles.title AS EmployeeRoleTitle,
+    Employee.first_name AS FirstName,
+    Employee.last_name AS LastName,
+    Roles.title AS Title,
     Employee.manager_id AS EmployeeManagerID
 FROM
     Employee
