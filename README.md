@@ -35,3 +35,12 @@ Once you've followed the steps in "Installation", you can begin the application 
 MIT
 
 ## Screenshots
+[Employee_Tracker Demo.webm](https://github.com/JBassard97/Employee_Tracker/assets/142551579/5d712f55-9f92-4908-8806-50ef97981436)
+
+<img width="264" alt="Screenshot 2023-12-12 144544" src="https://github.com/JBassard97/Employee_Tracker/assets/142551579/ecefb950-93f1-4981-b2ad-be9779b181e6">
+<img width="811" alt="Screenshot 2023-12-12 144628" src="https://github.com/JBassard97/Employee_Tracker/assets/142551579/ebb011f5-db22-460b-a07f-b994702aead0">
+<img width="533" alt="Screenshot 2023-12-12 144957" src="https://github.com/JBassard97/Employee_Tracker/assets/142551579/8bd552cf-5f62-40ad-b5e4-180c37cc3b54">
+<img width="345" alt="Screenshot 2023-12-12 145016" src="https://github.com/JBassard97/Employee_Tracker/assets/142551579/aa6bfd47-be93-44c7-8139-7e352a640e7f">
+
+
+
