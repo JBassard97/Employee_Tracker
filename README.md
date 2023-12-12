@@ -11,7 +11,7 @@
 
 ## Description
 
-This repository contains the source code for my employee_tracker application! this app allows the user to manage and view three different tables in a mysql database. with this program, you can view, add, update, and delete any employee, role, or department at will. there is also a 'seeds.sql' file that can populate these tables after the database has been created. it is inspired heavily by my day-job.
+This repository contains the source code for my employee_tracker application! This app allows the user to manage and view three different tables in a mysql database. with this program, you can view, add, update, and delete any employee, role, or department at will. There is also a 'seeds.sql' file that can populate these tables after the database has been created. It is inspired heavily by my day-job.
 
 ## Installation
 

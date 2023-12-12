@@ -6,6 +6,7 @@ const updateEmpRole = require("./caseFunctions/UpdateEmpRole");
 const addRole = require("./caseFunctions/AddRole");
 const addDep = require("./caseFunctions/AddDep");
 const deleteDep = require("./caseFunctions/DeleteDep");
+const deleteEmp = require("./caseFunctions/DeleteEmployee");
 const deleteRole = require("./caseFunctions/DeleteRole");
 const updateEmployeeManager = require("./caseFunctions/UpdateEmpManager");
 const viewEmployeesByManager = require("./caseFunctions/ViewEmpByMgr");
