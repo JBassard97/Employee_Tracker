@@ -1,3 +1,5 @@
+// Directory of all questions used in program
+
 const Ask = {
   Choices: [
     {
@@ -142,7 +144,8 @@ const Ask = {
     {
       type: "input",
       name: "depName",
-      message: "What is the name of the department you'd like to view employees for?",
+      message:
+        "What is the name of the department you'd like to view employees for?",
     },
   ],
 };

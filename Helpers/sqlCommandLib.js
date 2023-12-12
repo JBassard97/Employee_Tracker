@@ -1,3 +1,5 @@
+// Library of all SQL commands used in program
+
 const sqlCommands = {
   showAllTables: "SHOW TABLES",
   viewAllDepartments: `

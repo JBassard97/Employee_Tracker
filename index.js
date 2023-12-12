@@ -1,9 +1,5 @@
-const {
-  // inquirer,
-  Ask,
-  handleChoices,
-  // sqlCommands,
-} = require("./Helpers/imports");
+const handleChoices = require("./Helpers/choiceHandling");
+const Ask = require("./Helpers/promptDirectory");
 const inquirer = require("inquirer");
 const runQueryShowTable = require("./Helpers/runQueryShowTable");
 const sqlCommands = require("./Helpers/sqlCommandLib");

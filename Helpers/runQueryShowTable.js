@@ -4,6 +4,7 @@ function runQueryShowTable(sqlQuery, callback) {
   const mysql = require("mysql2");
   const dbConfig = require("./dbConfig");
   const connection = mysql.createConnection(dbConfig);
+  const colors = require("jbassard97nodecolors");
 
   // Perform a SELECT query
   connection.query(sqlQuery, function (error, results, fields) {
@@ -18,7 +19,7 @@ function runQueryShowTable(sqlQuery, callback) {
       // Display results as a table
       console.table(results);
     } else {
-      console.log("No results found.");
+      console.log(colors.BrightRedText("No results found."));
     }
 
     // Close the connection
